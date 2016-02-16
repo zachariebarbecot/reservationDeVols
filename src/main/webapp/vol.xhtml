@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>#{siteManager.s.SNom}</title>
+        <meta name="description" content="#{siteManager.s.SDescription}" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-2.1.4.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="myjs.js" />
+    </h:head>
+    <h:body style="background: white url(resources/imgs/background.jpg) center center no-repeat fixed; background-size: cover;">
+        <f:view>
+            <ui:insert name="header">
+                <ui:include src="/resources/includes/header.xhtml" />
+            </ui:insert>
+            <!-- Page Content -->
+            <div class="main-container container">
+                <div class="row">
+                    <ui:insert name="sidebar">
+                        <ui:include src="/resources/includes/sidebar.xhtml" />
+                    </ui:insert>
+                    <div class="col-md-9">
+                        <div class="thumbnail">
+                            <h:graphicImage class="img-responsive" value="resources/imgs/img1.jpg" /> 
+                            <div class="caption-full">
+                                <h:form>
+                                    <h4 class="pull-right">#{volManager.va.volId.volPrix}€</h4>
+                                    <h4>#{volManager.va.volId.volDepart}-#{volManager.va.volId.volArrivee}</h4>
+                                    <p>Départ le 
+                                        <h:outputText value="#{volManager.va.volAvnDated}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText><br />
+                                        Arrivé le 
+                                        <h:outputText value="#{volManager.va.volAvnDatea}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText><br />
+                                        Compagnie: #{volManager.va.avnCpnId.cpnId.cpnNom}<br />
+                                        Avion: #{volManager.va.avnCpnId.avnId.avnType}<br />
+                                        Capacité totale: #{volManager.va.avnCpnId.avnId.avnCapacite}<br />
+                                        Places disponibles: #{volManager.va.avnCpnId.avnId.avnCapacite-volManager.va.reservationCollection.size()}
+                                    </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                    <c:if test="#{clientManager.loggedIn}">
+                                        <c:if test="#{!clientManager.isReserved(volManager.va)}">
+                                            <h:commandLink class="btn btn-primary pull-right"  action="#{clientManager.doReservation(volManager.va)}" value="Réserver" />
+                                        </c:if>
+                                    </c:if>
+                                    <span class="clearfix"></span>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+            <ui:insert name="footer">
+                <ui:include src="/resources/includes/footer.xhtml" />
+            </ui:insert>
+        </f:view>
+    </h:body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{siteManager.s.SNom}</title>
+        <meta name="description" content="#{siteManager.s.SDescription}" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-2.1.4.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="myjs.js" />
+    </h:head>
+    <h:body style="background: white url(resources/imgs/background.jpg) center center no-repeat fixed; background-size: cover;">
+        <f:view>
+            <ui:insert name="header">
+                <ui:include src="/resources/includes/header.xhtml" />
+            </ui:insert>
+            <!-- Page Content -->
+            <div class="main-container container">
+                <div class="row">
+                    <ui:insert name="sidebar">
+                        <ui:include src="/resources/includes/sidebar.xhtml" />
+                    </ui:insert>
+                    <div class="col-md-9">
+                        <h:form class="form" rendered="#{!clientManager.loggedIn}">
+                            <div class="form-group">
+                                <h:messages globalOnly="true" class="text-danger" style="list-style-type: none;" />
+                            </div>
+                            <legend>Compte</legend>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Nom:" for="nom" />
+                                <h:inputText class="form-control" id="nom" value="#{registerManager.cl.clNom}">
+                                    <f:ajax event="blur" render="NomMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Prénom:" for="prenom" />
+                                <h:inputText class="form-control" id="prenom" value="#{registerManager.cl.clPrenom}">
+                                    <f:ajax event="blur" render="PrenomMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="NomMessage" for="nom" errorClass="text-danger" />
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="PrenomMessage" for="prenom" errorClass="text-danger" />
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Email:" for="email" />
+                                <h:inputText class="form-control" id="email" value="#{registerManager.cl.clEmail}" binding="#{confirmEmail}">
+                                    <f:ajax event="blur" execute="email emailc" render="EmailMessage EmailcMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Email (confirm):" for="emailc" />
+                                <h:inputText class="form-control" id="emailc" value="#{registerManager.cl.clEmail}">
+                                    <f:validator binding="#{emailValidator}" />
+                                    <f:attribute name="confirmEmail" value="#{confirmEmail}" />
+                                    <f:ajax event="blur" execute="email emailc" render="EmailMessage EmailcMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="EmailMessage" for="email" errorClass="text-danger" />
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="EmailcMessage" for="emailc" errorClass="text-danger" />
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Password:" for="password" />
+                                <h:inputSecret class="form-control" id="password" value="#{registerManager.cl.clPassword}" binding="#{confirmPassword}">
+                                    <f:ajax event="blur" execute="password passwordc" render="PasswordMessage PasswordcMessage" />
+                                </h:inputSecret>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Password (confirm):" for="passwordc" />
+                                <h:inputSecret class="form-control" id="passwordc" value="#{registerManager.cl.clPassword}">
+                                    <f:validator validatorId="passwordValidator" />
+                                    <f:attribute name="confirmPassword" value="#{confirmPassword}" />
+                                    <f:ajax event="blur" execute="password passwordc" render="PasswordMessage PasswordcMessage" />
+                                </h:inputSecret>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="PasswordMessage" for="password" errorClass="text-danger" />
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="PasswordcMessage" for="passwordc" errorClass="text-danger" />
+                            </div>
+                            <legend>Adresse</legend>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Numero:" for="numero" />
+                                <h:inputText class="form-control" id="numero" value="#{registerManager.adr.adrNumero}">
+                                    <f:ajax event="blur" render="NumeroMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Rue:" for="rue" />
+                                <h:inputText class="form-control" id="rue" value="#{registerManager.adr.adrRue}">
+                                    <f:ajax event="blur" render="RueMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="NumeroMessage" for="numero" errorClass="text-danger" />
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="RueMessage" for="rue" errorClass="text-danger" />
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Zip:" for="zip" />
+                                <h:inputText class="form-control" id="zip" value="#{registerManager.adr.adrZip}">
+                                    <f:ajax event="blur" render="ZipMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="Ville:" for="ville" />
+                                <h:inputText class="form-control" id="ville" value="#{registerManager.adr.adrVille}">
+                                    <f:ajax event="blur" render="VilleMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="ZipMessage" for="zip" errorClass="text-danger" />
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="VilleMessage" for="ville" errorClass="text-danger" />
+                            </div>
+                            <legend>Téléphone</legend>
+                            <div class="form-group col-md-5">
+                                <h:outputLabel value="N° Tel:" for="telephone" />
+                                <h:inputText class="form-control" id="telephone" value="#{registerManager.tel.telNumero}">
+                                    <f:ajax event="blur" render="TelMessage" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-md-5">
+                                <h:message id="TelMessage" for="telephone" errorClass="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <h:commandButton class="btn btn-lg btn-primary btn-block" value="Créer un compte" action="#{registerManager.register}">
+                                    <f:ajax execute="@form" render="@form" />
+                                </h:commandButton>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+            <ui:insert name="footer">
+                <ui:include src="/resources/includes/footer.xhtml" />
+            </ui:insert>
+        </f:view>
+    </h:body>
+</html>
+

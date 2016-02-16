@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>#{siteManager.s.SNom}</title>
+        <meta name="description" content="#{siteManager.s.SDescription}" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-2.1.4.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="myjs.js" />
+    </h:head>
+    <h:body style="background: white url(../resources/imgs/background.jpg) center center no-repeat fixed; background-size: cover;"> 
+        <f:view>
+            <ui:insert name="header">
+                <ui:include src="/resources/includes/header.xhtml" />
+            </ui:insert>
+            <!-- Page Content -->
+            <div class="main-container container">
+                <div class="row">
+                    <ui:insert name="sidebar">
+                        <ui:include src="/resources/includes/sidebar.xhtml" />
+                    </ui:insert>
+                    <div class="col-md-9">
+                        <c:forEach items="#{clientListManager.clientCollection}" var="client">
+                            <div class="row-fluid user-infos #{client.clEmail}">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">#{client.clId} - #{client.clPrenom} #{client.clNom}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row-fluid">
+                                            <table class="table table-condensed table-responsive table-user-information">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Role:</td>
+                                                        <td>#{client.groupeCollection.toArray()[0].GNom}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>#{client.clEmail}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Adresse</td>
+                                                        <td>#{client.adresseCollection.toArray()[0].adrNumero}, #{client.adresseCollection.toArray()[0].adrRue}<br />
+                                                            #{client.adresseCollection.toArray()[0].adrZip} #{client.adresseCollection.toArray()[0].adrVille}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Téléphone</td>
+                                                        <td>#{client.telephoneCollection.toArray()[0].telNumero}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Réservation</td>
+                                                        <td>#{client.reservationCollection.size()}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <c:if test="#{client.clId ne clientManager.cl.clId}">
+                                        <div class="panel-footer">
+                                            <h:form>
+                                                <h:commandLink class="pull-right btn btn-danger" value="&times;" action="#{clientListManager.removeClient}">
+                                                    <f:setPropertyActionListener target="#{clientListManager.clientRemove}" value="#{client}" />
+                                                </h:commandLink>
+                                            </h:form>
+                                            <span class="clearfix"></span>
+                                        </div>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+            <ui:insert name="footer">
+                <ui:include src="/resources/includes/footer.xhtml" />
+            </ui:insert>
+        </f:view>
+    </h:body>
+</html>
+

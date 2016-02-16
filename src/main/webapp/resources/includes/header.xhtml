@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition>
+            <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h:link class="navbar-brand" outcome="toIndex" value="#{siteManager.s.SNom}" />
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <c:choose>
+                                <c:when test="#{clientManager.loggedIn}">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <b>#{clientManager.cl.clPrenom} #{clientManager.cl.clNom}</b> <span class="caret"></span></a>
+                                        <ul id="login-dp" class="dropdown-menu">
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="bottom text-center" style="border-top: none ! important; padding-top: 0px !important;">
+                                                            <h:link outcome="toProfil" value="Profil" />
+                                                        </div>
+                                                        <div class="bottom text-center">
+                                                            <h:form>
+                                                                <h:commandLink action="#{clientManager.logout}" value="Se déconnecter" />
+                                                            </h:form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><p class="navbar-text">Enregistrez vous</p></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <b>Login</b> <span class="caret"></span></a>
+                                        <ul id="login-dp" class="dropdown-menu">
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h:form class="form" id="login-dp">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Email:" for="j_username" />
+                                                                <h:inputText class="form-control" id="j_username" value="#{clientManager.email}" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Password:" for="j_password" />
+                                                                <h:inputSecret class="form-control" id="j_password" value="#{clientManager.password}" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <h:commandButton type="submit" action="#{clientManager.login}" class="btn btn-primary btn-block" value="Se connecter" />
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                    <div class="bottom text-center">
+                                                        <b><h:link outcome="toRegister" value="Créer un compte" /></b>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </ui:composition>
+    </h:body>
+</html>

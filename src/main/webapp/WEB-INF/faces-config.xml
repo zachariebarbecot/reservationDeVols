@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <description>Navigation globale</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>toIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toRegister</from-outcome>
+            <to-view-id>/register.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toVols</from-outcome>
+            <to-view-id>/vols.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toCompagnies</from-outcome>
+            <to-view-id>/compagnies.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toProfil</from-outcome>
+            <to-view-id>/profil.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toClientsList</from-outcome>
+            <to-view-id>/admin/lclients.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toCompagniesList</from-outcome>
+            <to-view-id>/admin/lcompagnies.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toAddVol</from-outcome>
+            <to-view-id>/admin/addvol.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toAddVoyage</from-outcome>
+            <to-view-id>/admin/addvoyage.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

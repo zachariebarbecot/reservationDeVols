@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="resources/includes/footer.xhtml" x="48" y="101" zoom="true"/>
+        <Node id="resources/includes/sidebar.xhtml" x="46" y="39" zoom="true"/>
+        <Node id="profil.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="admin/addvol.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="index.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="admin/addvoyage.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="vols.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="*" x="150" y="300" zoom="true"/>
+        <Node id="403.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="admin/lclients.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="resources/includes/header.xhtml" x="45" y="69" zoom="true"/>
+        <Node id="vol.xhtml" x="1151" y="195" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="compagnies.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="register.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="admin/lcompagnies.xhtml" x="150" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

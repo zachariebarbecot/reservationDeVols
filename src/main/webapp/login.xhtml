@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>#{siteManager.s.SNom}</title>
+        <meta name="description" content="#{siteManager.s.SDescription}" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-2.1.4.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+    </h:head>
+    <h:body style="background: white url(#{resource['imgs/background.jpg']}) center center no-repeat fixed; background-size: cover;"> 
+        <f:view>
+            <ui:insert name="header">
+                <ui:include src="/resources/includes/header.xhtml" />
+            </ui:insert>
+            <!-- Page Content -->
+            <div class="main-container container">
+                <div class="row">
+                    <ui:insert name="sidebar">
+                        <ui:include src="/resources/includes/sidebar.xhtml" />
+                    </ui:insert>
+                    <div class="col-md-9">
+                        <h:form class="form col-md-4 col-md-offset-4" rendered="#{!clientManager.loggedIn}">
+                            <div class="form-group">
+                                <h:messages globalOnly="true" class="text-danger" style="list-style-type: none;" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Email:" for="j_username" />
+                                <h:inputText class="form-control" id="j_username" value="#{clientManager.email}" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Password:" for="j_password" />
+                                <h:inputSecret class="form-control" id="j_password" value="#{clientManager.password}" />
+                            </div>
+                            <div class="form-group">
+                                <h:commandButton action="#{clientManager.login}" class="btn btn-primary btn-block" value="Se connecter" />
+                            </div>
+                            <div class="bottom text-center">
+                                <b><h:link outcome="toRegister" value="Créer un compte" /></b>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+            <ui:insert name="footer">
+                <ui:include src="/resources/includes/footer.xhtml" />
+            </ui:insert>
+        </f:view>
+    </h:body>
+</html>
+
+
